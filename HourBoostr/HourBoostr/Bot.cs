@@ -240,8 +240,8 @@ namespace HourBoostr
                     {
                         /*This has historically only really occured when Steam is down,
                         but if too many errors happen here we'll pause*/
-                        mLog.Write(Log.LogLevel.Info, $"Pausing for 15 minutes due to too many errors occuring.");
-                        Thread.Sleep(TimeSpan.FromMinutes(15));
+                        mLog.Write(Log.LogLevel.Info, $"Pausing for 3 seconds due to too many errors occuring.");
+                        Thread.Sleep(TimeSpan.FromSeconds(3));
                     }
 
                     if (!mSteam.client.IsConnected)
@@ -308,8 +308,8 @@ namespace HourBoostr
                     their account and started playing, or steam is down. Either way we'll want
                     to pause so we don't get locked out from Steam due to too many requests in
                     a short period of time*/
-                    mLog.Write(Log.LogLevel.Warn, $"Too many disconnects occured in a short period of time. Sleeping for 15 minutes.");
-                    Thread.Sleep(TimeSpan.FromMinutes(15));
+                    mLog.Write(Log.LogLevel.Warn, $"Too many disconnects occured in a short period of time. Sleeping for 3 minutes.");
+                    Thread.Sleep(TimeSpan.FromSeconds(3));
                     mDisconnectedCounter = 0;
                 }
 
@@ -587,7 +587,7 @@ namespace HourBoostr
                     /*Start the timer to periodically refresh community connection*/
                     if (!mCommunityTimer.Enabled)
                     {
-                        mCommunityTimer.Interval = TimeSpan.FromMinutes(15).TotalMilliseconds;
+                        mCommunityTimer.Interval = TimeSpan.FromSeconds(3).TotalMilliseconds;
                         mCommunityTimer.Elapsed += new ElapsedEventHandler(VerifyCommunityConnection);
                         mCommunityTimer.Start();
                     }
